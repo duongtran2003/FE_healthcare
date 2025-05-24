@@ -5,11 +5,14 @@ import { useEffect } from "react";
 import { authApi } from "../../shared/api/api";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../stores/authStore";
+import { useSpinnerStore } from "../../shared/stores/spinnerStore";
 
 export default function MainLayout() {
-  const setUser = useAuthStore((state) => state.setUser)
+  const setLoading = useSpinnerStore((state) => state.setLoading);
+  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
+    setLoading(true);
     authApi
       .getMe()
       .then((res) => {
@@ -17,6 +20,9 @@ export default function MainLayout() {
       })
       .catch((err) => {
         toast.error("Something has gone wrong");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -26,7 +32,7 @@ export default function MainLayout() {
       <div className="w-full">
         <Header />
         <div className="px-8 pt-8 pb-48">
-        <Outlet />
+          <Outlet />
         </div>
       </div>
     </div>
