@@ -97,7 +97,7 @@ export default function Register() {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="min-w-72 w-[70%] mx-auto p-8 space-y-4"
+          className="min-w-72 w-[70%] mx-auto p-8 space-y-2"
         >
           <div>
             <label className="font-bold text-sm text-red-800 block mb-1">

@@ -80,4 +80,10 @@ export const authApi = {
 
     return response.data;
   },
+
+  logout: async () => {
+    const response = await axiosInstance.post(`${USERS_URL}logout/`);
+
+    return response.data;
+  },
 };
