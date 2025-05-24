@@ -53,7 +53,7 @@ export default function Dropdown({ text, options }) {
               className="bg-white px-6 py-2 hover:bg-red-900 hover:text-white/90 duration-200 cursor-pointer"
               onClick={() => handleOptionClick(option.handler)}
             >
-              option.text
+              {option.text}
             </div>
           ))}
         </div>

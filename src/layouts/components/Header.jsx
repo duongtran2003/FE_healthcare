@@ -1,9 +1,33 @@
 import { useMemo } from "react";
 import Dropdown from "../../shared/components/Dropdown";
 import { useAuthStore } from "../stores/authStore";
+import { useSpinnerStore } from "../../shared/stores/spinnerStore";
+import { useNavigate } from "react-router";
+import { authApi } from "../../shared/api/api";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const user = useAuthStore((state) => state.user);
+
+  const clearUser = useAuthStore((state) => state.clearUser);
+  const setLoading = useSpinnerStore((state) => state.setLoading);
+  const navigate = useNavigate();
+
+  const handleLogoutClick = async () => {
+    try {
+      setLoading(true);
+      await authApi.logout();
+      toast.success("Logout successfully");
+      clearUser();
+    } catch (err) {
+      toast.error("Something has gone wrong");
+    } finally {
+      clearUser();
+      setLoading(false);
+      navigate("/login");
+    }
+  };
+
   const optionsList = useMemo(() => {
     const list = [
       {
@@ -15,8 +39,8 @@ export default function Header() {
         handler: () => console.log("text2"),
       },
       {
-        text: "text3",
-        handler: () => console.log("text3"),
+        text: "Logout",
+        handler: () => handleLogoutClick(),
       },
     ];
 
