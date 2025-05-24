@@ -217,8 +217,13 @@ export default function Register() {
               <PhoneIcon className="text-gray-400" />
               <input
                 placeholder="Phone Number"
-                {...register("phone", { required: "Phone number is required" })}
-                className="outline-none text-sm bg-transparent w-full"
+                {...register("phone", {
+                  required: "Phone number is required",
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: "Phone number must contain only numbers",
+                  },
+                })}
               />
             </div>
             {errors.phone && (

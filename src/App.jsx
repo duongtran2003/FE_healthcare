@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import SpinnerOverlay from "./shared/components/SpinnerOverlay";
 import Login from "./login/Login";
 import Register from "./register/Register";
+import Profile from "./profile/Profile";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

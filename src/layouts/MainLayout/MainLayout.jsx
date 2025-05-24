@@ -29,9 +29,9 @@ export default function MainLayout() {
   return (
     <div className="flex flex-row">
       <Sidebar />
-      <div className="w-full">
+      <div className="w-full flex flex-col">
         <Header />
-        <div className="px-8 pt-8 pb-48">
+        <div className="px-8 pt-8 pb-48 bg-gray-100 flex-1">
           <Outlet />
         </div>
       </div>

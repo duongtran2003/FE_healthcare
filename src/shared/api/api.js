@@ -1,3 +1,4 @@
+import { patch } from "@mui/material";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/api/";
@@ -83,6 +84,17 @@ export const authApi = {
 
   logout: async () => {
     const response = await axiosInstance.post(`${USERS_URL}logout/`);
+
+    return response.data;
+  },
+
+  updateProfile: async (patchInfo) => {
+    const response = await axiosInstance.put(`${USERS_URL}update-profile/`, {
+      first_name: patchInfo.firstName,
+      last_name: patchInfo.lastName,
+      email: patchInfo.email,
+      phone_number: patchInfo.phone,
+    });
 
     return response.data;
   },

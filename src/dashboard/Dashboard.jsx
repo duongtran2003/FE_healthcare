@@ -4,11 +4,11 @@ export default function Dashboard() {
   const user = useAuthStore((state) => state.user);
 
   return (
-    <div className="h-[1000px] w-full">
+    <div className="w-full">
       <div className="text-red-900 font-bold text-xl">
         Welcome to our AI-powered healthcare system!
       </div>
-      <div className="p-4 mt-4 bg-white shadow-md">
+      <div className="p-4 mt-4 bg-white shadow-md rounded-md">
         <div className="text-red-900 text-lg mb-2 font-bold">
           {!user
             ? "Guest dashboard"
@@ -18,7 +18,7 @@ export default function Dashboard() {
         </div>
         {user ? (
           <>
-            <div>{`Welcome back, ${user.first_name ?? "Guest"} ${user.last_name ?? ""}!`}</div>
+            <div className="italic">{`Welcome back, ${user.first_name ?? "Guest"} ${user.last_name ?? ""}!`}</div>
             <div className="pt-1">
               <div className="text-red-900 font-bold">Your information:</div>
               <div className="text-red-900">
@@ -33,7 +33,7 @@ export default function Dashboard() {
             </div>
           </>
         ) : (
-          <div>{`Welcome back, Guest!`}</div>
+          <div className="italic">{`Welcome back, Guest!`}</div>
         )}
       </div>
     </div>

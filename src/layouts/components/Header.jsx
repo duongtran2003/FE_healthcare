@@ -35,8 +35,8 @@ export default function Header() {
         handler: () => console.log("text1"),
       },
       {
-        text: "text2",
-        handler: () => console.log("text2"),
+        text: "Profile",
+        handler: () => navigate('/profile'),
       },
       {
         text: "Logout",

@@ -8,6 +8,7 @@ import { useSpinnerStore } from "../../shared/stores/spinnerStore";
 import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import HailIcon from "@mui/icons-material/Hail";
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 export default function Sidebar() {
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -54,12 +55,22 @@ export default function Sidebar() {
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            "px-4 py-3 duration-200 flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
+            "px-4 py-3 duration-200 text-sm flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
             (isActive ? "text-red-500 bg-red-900/20" : "text-white")
           }
         >
           <DashboardIcon />
           <div>Dashboard</div>
+        </NavLink>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            "px-4 py-3 text-sm duration-200 flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
+            (isActive ? "text-red-500 bg-red-900/20" : "text-white")
+          }
+        >
+          <ContactPageIcon />
+          <div>Profile</div>
         </NavLink>
       </div>
       <div
