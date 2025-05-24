@@ -4,13 +4,16 @@ import Header from "../components/Header";
 import { useEffect } from "react";
 import { authApi } from "../../shared/api/api";
 import { toast } from "react-toastify";
+import { useAuthStore } from "../stores/authStore";
 
 export default function MainLayout() {
+  const setUser = useAuthStore((state) => state.setUser)
+
   useEffect(() => {
     authApi
       .getMe()
       .then((res) => {
-        console.log(res);
+        setUser(res);
       })
       .catch((err) => {
         toast.error("Something has gone wrong");

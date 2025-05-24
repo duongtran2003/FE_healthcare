@@ -8,6 +8,7 @@ import { useSpinnerStore } from "../../shared/stores/spinnerStore";
 
 export default function Sidebar() {
   const clearUser = useAuthStore((state) => state.clearUser);
+  const user = useAuthStore((state) => state.user);
   const setLoading = useSpinnerStore((state) => state.setLoading);
   const navigate = useNavigate();
 
@@ -28,7 +29,13 @@ export default function Sidebar() {
 
   return (
     <div className="bg-gray-800 sticky text-gray-300 top-0 flex flex-col max-w-64 w-64 h-[100vh] min-h-[100vh]">
-      <div className="p-4 bg-gray-900 text-white/90">Healthcare</div>
+      <div className="p-4 bg-gray-900 text-white/90">
+        {!user
+          ? "Guest portal"
+          : user.is_patient
+            ? "Patient portal"
+            : "Doctor portal"}
+      </div>
       <div className="flex flex-col flex-1">
         <NavLink
           to="/dashboard"
