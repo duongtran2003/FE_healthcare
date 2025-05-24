@@ -109,7 +109,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="mx-auto block px-16 font-bold uppercase mt-8 bg-red-700 text-white/90 py-2 rounded-full hover:bg-red-800 duration-200 cursor-pointer"
+            className="mx-auto w-full px-16 font-bold uppercase mt-8 bg-red-700 text-white/90 py-2 rounded-full hover:bg-red-800 duration-200 cursor-pointer"
           >
             Login
           </button>

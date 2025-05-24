@@ -101,34 +101,32 @@ export default function Register() {
           onSubmit={handleSubmit(onSubmit)}
           className="min-w-72 w-[70%] mx-auto p-8 space-y-2"
         >
-          <div>
+          <div className="mb-4">
             <label className="font-bold text-sm text-red-800 block mb-1">
-              Account Type
+              You are a...
             </label>
-            <div className="flex gap-8 px-4">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  value="patient"
-                  {...register("accountType", {
-                    required: "Account type is required",
-                  })}
-                  defaultChecked
-                  className="cursor-pointer accent-red-700"
-                />
-                <span className="text-sm text-red-800">Patient</span>
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  value="doctor"
-                  {...register("accountType", {
-                    required: "Account type is required",
-                  })}
-                  className="cursor-pointer accent-red-700"
-                />
-                <span className="text-sm text-red-800">Doctor</span>
-              </label>
+            <div className="flex gap-2 justify-start">
+              {["patient", "doctor"].map((type) => (
+                <label
+                  key={type}
+                  className={`flex-1 px-2 py-2 rounded-sm cursor-pointer duration-200
+                    flex items-center justify-center text-sm shadow-md hover:bg-red-900 hover:text-white/90 ${
+                      watch("accountType") === type
+                        ? "bg-red-900 text-white/90"
+                        : "bg-gray-100 text-red-900"
+                    }`}
+                >
+                  <input
+                    type="radio"
+                    value={type}
+                    {...register("accountType", {
+                      required: "Account type is required",
+                    })}
+                    className="hidden"
+                  />
+                  <span className="capitalize">{type}</span>
+                </label>
+              ))}
             </div>
             {errors.accountType && (
               <p className="text-red-500 text-xs mt-1">
@@ -308,7 +306,7 @@ export default function Register() {
 
           <button
             type="submit"
-            className="mx-auto block px-16 font-bold uppercase mt-8 bg-red-700 text-white/90 py-2 rounded-full hover:bg-red-800 duration-200 cursor-pointer"
+            className="ml-auto block px-16 font-bold uppercase mt-8 bg-red-700 text-white/90 py-2 rounded-full hover:bg-red-800 duration-200 cursor-pointer"
           >
             Register
           </button>
