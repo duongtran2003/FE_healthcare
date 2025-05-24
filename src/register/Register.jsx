@@ -41,11 +41,13 @@ export default function Register() {
     } catch (err) {
       if (err.status === 400 && err?.response?.data) {
         for (const key in err.response.data) {
+          toast.error(err.response.data[key][0]);
           setError(key, {
             type: "manual",
             message: err.response.data[key],
           });
         }
+
         return;
       }
       toast.error("Something has gone wrong");
@@ -80,9 +82,9 @@ export default function Register() {
           </div>
           <Link
             to="/login"
-            className="flex flex-row-reverse items-center text-red-900 mt-8 max-w-48 bg-white gap-2 rounded-full px-6 py-2 group"
+            className="flex flex-row-reverse ml-auto items-center text-red-900 mt-8 w-fit bg-white gap-2 rounded-full px-6 py-2 group"
           >
-            <div className="duration-400 min-w-[85px] group-hover:flex-1 font-bold text-right">
+            <div className="duration-400 min-w-[85px] group-hover:ml-8 font-bold text-right">
               Log Me In
             </div>
             <KeyboardArrowLeftIcon />

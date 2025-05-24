@@ -109,7 +109,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full font-bold uppercase mt-4 bg-red-700 text-white/90 py-2 rounded-full hover:bg-red-800 duration-200 cursor-pointer"
+            className="mx-auto block px-16 font-bold uppercase mt-8 bg-red-700 text-white/90 py-2 rounded-full hover:bg-red-800 duration-200 cursor-pointer"
           >
             Login
           </button>
@@ -132,9 +132,9 @@ export default function Login() {
           </div>
           <Link
             to="/register"
-            className="flex flex-row items-center text-red-900 mt-8 max-w-48 bg-white gap-2 rounded-full px-6 py-2 group"
+            className="flex flex-row items-center text-red-900 mt-8 w-fit bg-white gap-2 rounded-full px-6 py-2 group"
           >
-            <div className="duration-400 min-w-[90px] group-hover:flex-1 font-bold">
+            <div className="duration-400 min-w-[90px] group-hover:mr-8 font-bold">
               Sign Me Up
             </div>
             <KeyboardArrowRightIcon />
