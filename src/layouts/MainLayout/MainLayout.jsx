@@ -25,7 +25,9 @@ export default function MainLayout() {
       <Sidebar />
       <div className="w-full">
         <Header />
+        <div className="px-8 pt-8 pb-48">
         <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,9 @@ import { authApi } from "../../shared/api/api";
 import { useAuthStore } from "../stores/authStore";
 import { toast } from "react-toastify";
 import { useSpinnerStore } from "../../shared/stores/spinnerStore";
+import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import HailIcon from "@mui/icons-material/Hail";
 
 export default function Sidebar() {
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -30,11 +33,22 @@ export default function Sidebar() {
   return (
     <div className="bg-gray-800 sticky text-gray-300 top-0 flex flex-col max-w-64 w-64 h-[100vh] min-h-[100vh]">
       <div className="p-4 bg-gray-900 text-white/90">
-        {!user
-          ? "Guest portal"
-          : user.is_patient
-            ? "Patient portal"
-            : "Doctor portal"}
+        {!user ? (
+          <div className="flex flex-row gap-1 items-center">
+            <HailIcon />
+            <div>Guest portal</div>
+          </div>
+        ) : user.is_patient ? (
+          <div className="flex flex-row gap-1 items-center">
+            <AirlineSeatIndividualSuiteIcon />
+            <div>Patient portal</div>
+          </div>
+        ) : (
+          <div className="flex flex-row gap-1 items-center">
+            <MedicalServicesIcon />
+            <div>Doctor portal</div>
+          </div>
+        )}
       </div>
       <div className="flex flex-col flex-1">
         <NavLink
