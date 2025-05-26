@@ -34,7 +34,7 @@ export default function Dropdown({ text, options }) {
   }, [isOpen]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <div
         onClick={handleDropdownClick}
         className="text-red-900 flex flex-row gap-1 cursor-pointer"
@@ -43,10 +43,7 @@ export default function Dropdown({ text, options }) {
         {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       </div>
       {isOpen && (
-        <div
-          ref={dropdownRef}
-          className="absolute top-8 right-2 bg-white border border-gray-300 shadow-md py-2 rounded-md"
-        >
+        <div className="absolute top-8 right-2 bg-white border border-gray-300 shadow-md py-2 rounded-md">
           {options.map((option, index) => (
             <div
               key={index}

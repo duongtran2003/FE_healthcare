@@ -3,6 +3,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/api/";
 const USERS_URL = "users/";
+const APPOINTMENT_URL = "appointments/";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -97,6 +98,21 @@ export const authApi = {
       email: patchInfo.email,
       phone_number: patchInfo.phone,
       specialization: patchInfo.specialization,
+    });
+
+    return response.data;
+  },
+};
+
+export const appointmentsApi = {
+  createSchedule: async (payload) => {
+    const { date, endTime, startTime, duration } = payload;
+    const response = await axiosInstance.post(`${APPOINTMENT_URL}schedules/`, {
+      duration,
+      date,
+      doctor: 1,
+      end_time: `${endTime}:00`,
+      start_time: `${startTime}:00`,
     });
 
     return response.data;

@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from '@mui/icons-material/Login';
 import { authApi } from "../../shared/api/api";
 import { useAuthStore } from "../stores/authStore";
 import { toast } from "react-toastify";
@@ -8,7 +9,8 @@ import { useSpinnerStore } from "../../shared/stores/spinnerStore";
 import AirlineSeatIndividualSuiteIcon from "@mui/icons-material/AirlineSeatIndividualSuite";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import HailIcon from "@mui/icons-material/Hail";
-import ContactPageIcon from '@mui/icons-material/ContactPage';
+import ContactPageIcon from "@mui/icons-material/ContactPage";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 
 export default function Sidebar() {
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -62,24 +64,49 @@ export default function Sidebar() {
           <DashboardIcon />
           <div>Dashboard</div>
         </NavLink>
-        <NavLink
-          to="/profile"
-          className={({ isActive }) =>
-            "px-4 py-3 text-sm duration-200 flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
-            (isActive ? "text-red-500 bg-red-900/20" : "text-white")
-          }
+        {user && (
+          <>
+            <NavLink
+              to="/doctor/create-schedule"
+              className={({ isActive }) =>
+                "px-4 py-3 duration-200 text-sm flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
+                (isActive ? "text-red-500 bg-red-900/20" : "text-white")
+              }
+            >
+              <EditCalendarIcon />
+              <div>Create Schedule</div>
+            </NavLink>
+
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                "px-4 py-3 text-sm duration-200 flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
+                (isActive ? "text-red-500 bg-red-900/20" : "text-white")
+              }
+            >
+              <ContactPageIcon />
+              <div>Profile</div>
+            </NavLink>
+          </>
+        )}
+      </div>
+      {user ? (
+        <div
+          onClick={handleLogoutClick}
+          className="px-4 py-3 duration-200 rounded flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 cursor-pointer"
         >
-          <ContactPageIcon />
-          <div>Profile</div>
-        </NavLink>
-      </div>
-      <div
-        onClick={handleLogoutClick}
-        className="px-4 py-3 duration-200 rounded flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 cursor-pointer"
-      >
-        <LogoutIcon />
-        <div>Logout</div>
-      </div>
+          <LogoutIcon />
+          <div>Logout</div>
+        </div>
+      ) : (
+        <div
+          onClick={() => navigate('/login')}
+          className="px-4 py-3 duration-200 rounded flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 cursor-pointer"
+        >
+          <LoginIcon />
+          <div>Login</div>
+        </div>
+      )}
     </div>
   );
 }

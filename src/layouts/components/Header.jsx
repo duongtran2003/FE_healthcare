@@ -31,18 +31,17 @@ export default function Header() {
   const optionsList = useMemo(() => {
     const list = [
       {
-        text: "text1",
-        handler: () => console.log("text1"),
-      },
-      {
-        text: "Profile",
-        handler: () => navigate('/profile'),
-      },
-      {
-        text: "Logout",
-        handler: () => handleLogoutClick(),
+        text: user ? "Logout" : "Login",
+        handler: () => (user ? handleLogoutClick() : navigate("/login")),
       },
     ];
+
+    if (user) {
+      list.unshift({
+        text: "Profile",
+        handler: () => navigate("/profile"),
+      });
+    }
 
     return list;
   }, []);
@@ -51,7 +50,8 @@ export default function Header() {
     <div className="p-4 shadow-md sticky flex flex-row justify-between top-0 bg-white pr-8">
       <div className="text-red-900 font-bold">Healthcare</div>
       <Dropdown
-        text={!user ? "Guest" : `${user.first_name} ${user.last_name}`} options={optionsList}
+        text={!user ? "Guest" : `${user.first_name} ${user.last_name}`}
+        options={optionsList}
       ></Dropdown>
     </div>
   );

@@ -10,6 +10,7 @@ import Login from "./login/Login";
 import Register from "./register/Register";
 import Profile from "./profile/Profile";
 import { AnimatePresence } from "framer-motion";
+import CreateSchedule from "./schedule/CreateSchedule";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
               <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="profile" element={<Profile />} />
+              <Route
+                path="doctor/create-schedule"
+                element={<CreateSchedule />}
+              />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
