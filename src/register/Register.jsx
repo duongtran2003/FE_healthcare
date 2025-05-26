@@ -222,6 +222,7 @@ export default function Register() {
                     message: "Phone number must contain only numbers",
                   },
                 })}
+                className="outline-none text-sm bg-transparent w-full"
               />
             </div>
             {errors.phone && (
