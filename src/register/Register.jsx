@@ -84,7 +84,7 @@ export default function Register() {
             to="/login"
             className="flex flex-row-reverse ml-auto items-center text-red-900 mt-8 w-fit bg-white gap-2 rounded-full px-6 py-2 group"
           >
-            <div className="duration-400 min-w-[85px] group-hover:ml-8 font-bold text-right">
+            <div className="duration-500 min-w-[85px] group-hover:ml-8 font-bold text-right">
               Log Me In
             </div>
             <KeyboardArrowLeftIcon />

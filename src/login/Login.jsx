@@ -134,7 +134,7 @@ export default function Login() {
             to="/register"
             className="flex flex-row items-center text-red-900 mt-8 w-fit bg-white gap-2 rounded-full px-6 py-2 group"
           >
-            <div className="duration-400 min-w-[90px] group-hover:mr-8 font-bold">
+            <div className="duration-500 min-w-[90px] group-hover:mr-8 font-bold">
               Sign Me Up
             </div>
             <KeyboardArrowRightIcon />
