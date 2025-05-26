@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
+import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import PhoneIcon from "@mui/icons-material/Phone";
 
 export default function Profile() {
@@ -24,6 +25,7 @@ export default function Profile() {
       lastName: user.last_name,
       email: user.email,
       phone: user.phone_number,
+      specialization: user?.doctor_profile.specialization,
     },
   });
 
@@ -38,6 +40,7 @@ export default function Profile() {
         lastName: updatedUser.last_name,
         email: updatedUser.email,
         phone: updatedUser.phone_number,
+        specialization: updatedUser?.doctor_profile.specialization,
       });
       toast.success("Update profile successfully");
     } catch (err) {
@@ -172,6 +175,32 @@ export default function Profile() {
             </p>
           )}
         </div>
+        {user.is_doctor && (
+          <div>
+            <div className="text-sm">Specialization</div>
+            <div
+              className={
+                "bg-gray-100 rounded-full px-4 py-2 flex gap-2 items-center focus-within:shadow-md focus-within:shadow-red-500/10 duration-200" +
+                (errors.phone ? " !bg-red-500/10" : "")
+              }
+            >
+              <MedicalInformationIcon className="text-gray-400" />
+              <input
+                placeholder="Specialization. eg Cardiology"
+                {...register("specialization", {
+                  required: "Specialization is required",
+                })}
+                className="outline-none text-sm bg-transparent w-full"
+              />
+            </div>
+            {errors?.specialization && (
+              <p className="text-red-500 text-xs pl-4 mt-1">
+                {errors?.specialization.message}
+              </p>
+            )}
+          </div>
+        )}
+
         <div className="flex flex-row justify-end gap-3">
           <button
             disabled={!isDirty}

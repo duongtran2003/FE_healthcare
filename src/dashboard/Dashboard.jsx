@@ -30,6 +30,11 @@ export default function Dashboard() {
               <div className="text-red-900">
                 <span className="font-bold">Phone:</span> {user.phone_number}
               </div>
+              {user.is_doctor && (
+                <div className="text-red-900">
+                  <span className="font-bold">Specialization:</span> {user.doctor_profile.specialization}
+                </div>
+              )}
             </div>
           </>
         ) : (

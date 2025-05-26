@@ -11,6 +11,7 @@ import { useSpinnerStore } from "../shared/stores/spinnerStore";
 import { authApi } from "../shared/api/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
 
 const pageVariants = {
   initial: { opacity: 0.7, x: 100 },
@@ -231,6 +232,31 @@ export default function Register() {
               </p>
             )}
           </div>
+
+          {watch("accountType") === "doctor" && (
+            <div>
+              <div
+                className={
+                  "bg-gray-100 rounded-full px-4 py-2 flex gap-2 items-center focus-within:shadow-md focus-within:shadow-red-500/10 duration-200" +
+                  (errors?.specialization ? " !bg-red-500/10" : "")
+                }
+              >
+                <MedicalInformationIcon className="text-gray-400" />
+                <input
+                  placeholder="Specialization. eg Cardiology"
+                  {...register("specialization", {
+                    required: "Specialization is required",
+                  })}
+                  className="outline-none text-sm bg-transparent w-full"
+                />
+              </div>
+              {errors?.specialization && (
+                <p className="text-red-500 text-xs pl-4 mt-1">
+                  {errors?.specialization.message}
+                </p>
+              )}
+            </div>
+          )}
 
           <div>
             <div

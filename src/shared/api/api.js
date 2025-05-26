@@ -67,11 +67,13 @@ export const authApi = {
       password,
       phone,
       username,
+      specialization,
     } = credentials;
     const response = await axiosInstance.post(`${USERS_URL}register/`, {
       email,
       username,
       password,
+      specialization,
       first_name: firstName,
       last_name: lastName,
       phone_number: phone,
@@ -94,6 +96,7 @@ export const authApi = {
       last_name: patchInfo.lastName,
       email: patchInfo.email,
       phone_number: patchInfo.phone,
+      specialization: patchInfo.specialization,
     });
 
     return response.data;
