@@ -11,6 +11,7 @@ import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import HailIcon from "@mui/icons-material/Hail";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 export default function Sidebar() {
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -76,7 +77,16 @@ export default function Sidebar() {
               <EditCalendarIcon />
               <div>Create Schedule</div>
             </NavLink>
-
+            <NavLink
+              to="/doctor/schedules"
+              className={({ isActive }) =>
+                "px-4 py-3 duration-200 text-sm flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
+                (isActive ? "text-red-500 bg-red-900/20" : "text-white")
+              }
+            >
+              <CalendarMonthIcon />
+              <div>Schedules</div>
+            </NavLink>
             <NavLink
               to="/profile"
               className={({ isActive }) =>

@@ -72,10 +72,10 @@ export default function Profile() {
 
   return (
     <div className="w-fit mx-auto px-8 pt-2 pb-8 shadow-md rounded-md bg-white">
-      <div className="font-bold text-red-900 mb-2">User profile</div>
+      <div className="font-bold text-red-900 text-lg mb-2">User profile</div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="min-w-72 max-w-[700px] mx-auto space-y-2"
+        className="min-w-72 max-w-[700px] w-[700px] mx-auto space-y-2"
       >
         <div className="flex gap-4">
           <div className="flex-1">

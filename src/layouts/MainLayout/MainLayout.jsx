@@ -27,7 +27,7 @@ export default function MainLayout() {
   }, []);
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row relative">
       <Sidebar />
       <div className="w-full flex flex-col">
         <Header />

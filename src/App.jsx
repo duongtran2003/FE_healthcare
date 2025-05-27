@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import MainLayout from "./layouts/MainLayout/MainLayout";
@@ -11,6 +10,7 @@ import Register from "./register/Register";
 import Profile from "./profile/Profile";
 import { AnimatePresence } from "framer-motion";
 import CreateSchedule from "./schedule/CreateSchedule";
+import DoctorSchedule from "./schedule/DoctorSchedule";
 
 function App() {
   return (
@@ -20,11 +20,15 @@ function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Navigate to="/dashboard" replace />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="profile" element={<Profile />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
               <Route
-                path="doctor/create-schedule"
+                path="/doctor/create-schedule"
                 element={<CreateSchedule />}
+              />
+              <Route
+                path="/doctor/schedules"
+                element={<DoctorSchedule />}
               />
             </Route>
             <Route path="/login" element={<Login />} />

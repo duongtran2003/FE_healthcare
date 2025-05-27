@@ -117,4 +117,16 @@ export const appointmentsApi = {
 
     return response.data;
   },
+
+  getMySchedules: async () => {
+    const response = await axiosInstance.get(`${APPOINTMENT_URL}schedules/`);
+    return response.data;
+  },
+
+  deleteMySchedule: async (id) => {
+    const response = await axiosInstance.delete(
+      `${APPOINTMENT_URL}schedules/${id}/`,
+    );
+    return response.data;
+  },
 };

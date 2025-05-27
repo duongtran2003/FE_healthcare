@@ -81,12 +81,12 @@ export default function CreateSchedule() {
 
   return (
     <div className="w-fit mx-auto px-8 pt-2 pb-8 shadow-md rounded-md bg-white">
-      <div className="font-bold text-red-900 mb-4 text-center text-xl">
+      <div className="font-bold text-red-900 mb-4 text-lg">
         Create Schedule
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="min-w-72 max-w-[700px] w-[700px] mx-auto space-y-4"
+        className="min-w-72 max-w-[700px] w-[700px] mx-auto space-y-2"
       >
         <div>
           <div className="text-sm mb-1">Select Date</div>
