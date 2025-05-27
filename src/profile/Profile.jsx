@@ -25,7 +25,7 @@ export default function Profile() {
       lastName: user.last_name,
       email: user.email,
       phone: user.phone_number,
-      specialization: user?.doctor_profile.specialization,
+      specialization: user?.doctor_profile?.specialization,
     },
   });
 
@@ -40,7 +40,7 @@ export default function Profile() {
         lastName: updatedUser.last_name,
         email: updatedUser.email,
         phone: updatedUser.phone_number,
-        specialization: updatedUser?.doctor_profile.specialization,
+        specialization: updatedUser?.doctor_profile?.specialization,
       });
       toast.success("Update profile successfully");
     } catch (err) {

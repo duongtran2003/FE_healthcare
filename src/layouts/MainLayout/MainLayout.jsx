@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ import { useSpinnerStore } from "../../shared/stores/spinnerStore";
 export default function MainLayout() {
   const setLoading = useSpinnerStore((state) => state.setLoading);
   const setUser = useAuthStore((state) => state.setUser);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -20,6 +21,7 @@ export default function MainLayout() {
       })
       .catch((err) => {
         toast.error("Something has gone wrong");
+        navigate("/login");
       })
       .finally(() => {
         setLoading(false);

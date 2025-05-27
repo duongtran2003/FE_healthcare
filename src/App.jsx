@@ -11,6 +11,8 @@ import Profile from "./profile/Profile";
 import { AnimatePresence } from "framer-motion";
 import CreateSchedule from "./schedule/CreateSchedule";
 import DoctorSchedule from "./schedule/DoctorSchedule";
+import SearchDoctor from "./appointments/SearchDoctor";
+import DoctorDetail from "./appointments/DoctorDetail";
 
 function App() {
   return (
@@ -26,10 +28,9 @@ function App() {
                 path="/doctor/create-schedule"
                 element={<CreateSchedule />}
               />
-              <Route
-                path="/doctor/schedules"
-                element={<DoctorSchedule />}
-              />
+              <Route path="/doctor/schedules" element={<DoctorSchedule />} />
+              <Route path="/book-appointments" element={<SearchDoctor />} />
+              <Route path="/book-appointments/:id" element={<DoctorDetail />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

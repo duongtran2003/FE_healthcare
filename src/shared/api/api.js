@@ -129,4 +129,18 @@ export const appointmentsApi = {
     );
     return response.data;
   },
+
+  searchDoctor: async (searchString) => {
+    const response = await axiosInstance.get(
+      `${APPOINTMENT_URL}doctors/?search=${searchString}`,
+    );
+    return response.data;
+  },
+
+  getDoctorSchedules: async (id) => {
+    const response = await axiosInstance.get(
+      `${APPOINTMENT_URL}doctors/${id}/schedules/`,
+    );
+    return response.data;
+  },
 };

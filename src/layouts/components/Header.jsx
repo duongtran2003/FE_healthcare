@@ -44,7 +44,7 @@ export default function Header() {
     }
 
     return list;
-  }, []);
+  }, [user]);
 
   return (
     <div className="p-4 shadow-md sticky flex flex-row justify-between top-0 bg-white pr-8">
