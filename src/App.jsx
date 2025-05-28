@@ -13,6 +13,7 @@ import CreateSchedule from "./schedule/CreateSchedule";
 import DoctorSchedule from "./schedule/DoctorSchedule";
 import SearchDoctor from "./appointments/SearchDoctor";
 import DoctorDetail from "./appointments/DoctorDetail";
+import MyAppointments from "./appointments/MyAppointments";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="/doctor/schedules" element={<DoctorSchedule />} />
               <Route path="/book-appointments" element={<SearchDoctor />} />
               <Route path="/book-appointments/:id" element={<DoctorDetail />} />
+              <Route path="/my-appointments" element={<MyAppointments />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

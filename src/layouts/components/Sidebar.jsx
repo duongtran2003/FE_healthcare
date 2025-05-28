@@ -13,6 +13,7 @@ import ContactPageIcon from "@mui/icons-material/ContactPage";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 
 export default function Sidebar() {
   const clearUser = useAuthStore((state) => state.clearUser);
@@ -105,6 +106,16 @@ export default function Sidebar() {
                 <div>Book appointment</div>
               </NavLink>
             )}
+            <NavLink
+              to="/my-appointments"
+              className={({ isActive }) =>
+                "px-4 py-3 text-sm duration-200 flex flex-row items-center gap-1 hover:bg-red-900/20 hover:text-red-500 " +
+                (isActive ? "text-red-500 bg-red-900/20" : "text-white")
+              }
+            >
+              <EventNoteIcon />
+              <div>Appointments</div>
+            </NavLink>
             <NavLink
               to="/profile"
               className={({ isActive }) =>

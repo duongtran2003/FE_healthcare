@@ -143,4 +143,26 @@ export const appointmentsApi = {
     );
     return response.data;
   },
+
+  bookAppointment: async (payload) => {
+    const response = await axiosInstance.post(
+      `${APPOINTMENT_URL}book/`,
+      payload,
+    );
+    return response.data;
+  },
+
+  getMyAppointments: async (accountType) => {
+    const response = await axiosInstance.get(
+      `${APPOINTMENT_URL}${accountType}/appointments/`,
+    );
+    return response.data;
+  },
+
+  deleteAppointment: async (id) => {
+    const response = await axiosInstance.patch(
+      `${APPOINTMENT_URL}appointments/${id}/cancel/`,
+    )
+    return response.data;
+  }
 };

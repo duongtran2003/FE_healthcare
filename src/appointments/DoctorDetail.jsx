@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { appointmentsApi } from "../shared/api/api";
 import { toast } from "react-toastify";
 import Tag from "../shared/components/Tag";
+import { useAuthStore } from "../layouts/stores/authStore.js";
 
 export default function DoctorDetail() {
   const { id } = useParams();
@@ -14,6 +15,8 @@ export default function DoctorDetail() {
   const [doctorInfo, setDoctorInfo] = useState(null);
   const [currentSchedule, setCurrentSchedule] = useState(null);
   const [currentSlot, setCurrentSlot] = useState(null);
+  const [currentReason, setCurrentReason] = useState("");
+  const user = useAuthStore((state) => state.user);
 
   function handleSelectSchedule(schedule) {
     if (currentSchedule?.id == schedule.id) {
@@ -36,6 +39,41 @@ export default function DoctorDetail() {
     }
 
     setCurrentSlot(slot);
+  }
+
+  function handleBookClick() {
+    if (!currentSchedule || !currentSlot || !currentReason) {
+      toast.error("Please fill out all the fields");
+      return;
+    }
+
+    const payload = {
+      patient_id: user.patient_profile.id,
+      reason: currentReason,
+      schedule_id: currentSchedule.id,
+      time: currentSlot,
+    };
+
+    setLoading(true);
+    appointmentsApi
+      .bookAppointment(payload)
+      .then((res) => {
+        toast.success("Booked successfully");
+        setCurrentSlot(null);
+        setCurrentSchedule(null);
+        setCurrentReason("");
+      })
+      .catch((err) => {
+        if (err?.response?.data?.detail) {
+          toast.error(err.response.data.detail);
+          return;
+        }
+
+        toast.error("Something has gone wrong");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   const calculatedTimeSlots = useMemo(() => {
@@ -107,7 +145,7 @@ export default function DoctorDetail() {
         className="cursor-pointer"
         onClick={() => navigate("/book-appointments")}
       />
-      <div className="bg-white rounded-md shadow-md px-8 pb-8 pt-2 mt-4">
+      <div className="bg-white rounded-md shadow-md px-8 pb-8 pt-2 mt-4 flex flex-col">
         <div className="text-lg text-red-900 font-bold">
           Dr. {doctorInfo?.user?.first_name} {doctorInfo?.user?.last_name}
           <div className="italic font-normal text-sm text-black">
@@ -164,8 +202,9 @@ export default function DoctorDetail() {
             <div className="bg-gray-100 px-2 py-1 border-b">Time slots:</div>
             {currentSchedule ? (
               <div className="p-3 flex flex-row gap-2 flex-wrap">
-                {calculatedTimeSlots.map((slot) => (
+                {calculatedTimeSlots.map((slot, index) => (
                   <div
+                    key={index}
                     style={{
                       backgroundColor:
                         slot == currentSlot ? "#991b1b" : "#fee2e2",
@@ -183,6 +222,21 @@ export default function DoctorDetail() {
             )}
           </div>
         </div>
+        <div className="border border-black rounded-sm overflow-clip flex-1 mt-4">
+          <div className="bg-gray-100 px-2 py-1 border-b">Reason:</div>
+          <textarea
+            value={currentReason}
+            onChange={(e) => setCurrentReason(e.target.value)}
+            className="w-full p-2 resize-none outline-none"
+            rows="3"
+          ></textarea>
+        </div>
+        <button
+          onClick={handleBookClick}
+          className="bg-red-800 cursor-pointer px-2 py-1 hover:bg-red-900 duration-200 rounded-sm text-white min-w-36 self-end mt-4"
+        >
+          Book
+        </button>
       </div>
     </div>
   );
