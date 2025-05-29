@@ -6,6 +6,7 @@ import { authApi } from "../../shared/api/api";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../stores/authStore";
 import { useSpinnerStore } from "../../shared/stores/spinnerStore";
+import Chatbox from "../../chatbox/Chatbox";
 
 export default function MainLayout() {
   const setLoading = useSpinnerStore((state) => state.setLoading);
@@ -37,6 +38,7 @@ export default function MainLayout() {
           <Outlet />
         </div>
       </div>
+      <Chatbox />
     </div>
   );
 }
